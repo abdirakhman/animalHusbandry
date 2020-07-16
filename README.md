@@ -1,4 +1,4 @@
-# Project Title
+# Animal Husbandry app
 
 Mobile application for Android and iOS to keep track of animal husbandry.
 
