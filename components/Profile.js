@@ -170,7 +170,7 @@ export default class Profile extends React.Component {
     return (
       <View style={styles.container}>
         <View style={{justifyContent : 'center', alignItems : 'center'}}>
-        <Text style={styles.title}> Abdirakhman's Animal Husbandry App </Text>
+        <Text style={styles.title}> Animal Husbandry App </Text>
         </View>
         <FlatList
           data={DATA}
