@@ -24,7 +24,7 @@ All list of prerequisites are in `package.json` file.
 
 ## Deployment
 
-To deploy app please refer to * [Expo](https://docs.expo.io/distribution/building-standalone-apps/).
+To deploy app please refer to [Expo](https://docs.expo.io/distribution/building-standalone-apps/).
 
 ## Built With
 
