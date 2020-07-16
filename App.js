@@ -1,21 +1,50 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+import Profile from './components/Profile';
+import Check from './components/Check';
+import Edit from './components/Edit';
+import Insert from './components/Insert';
+import Request from './components/Request';
+import RequestByType from './components/RequestByType';
+import Revision from './components/Revision';
+import Scanner from './components/Scanner';
+import SelectType from './components/SelectType';
+import ViewAll from './components/ViewAll';
+import Types from './components/Types';
+import AddType from './components/AddType';
+import AskRevision from './components/AskRevision';
+import ViewInformation from './components/ViewInformation';
+import EditVaccineHistory from './components/EditVaccineHistory';
+import EditDiseaseHistory from './components/EditDiseaseHistory';
+
+const MainNavigator = createStackNavigator({
+  Home: {screen: Profile},
+  Profile: {screen: Profile},
+  AskRevision : {screen : AskRevision},
+  Check : {screen : Check},
+  Edit : {screen : Edit},
+  Insert : {screen : Insert},
+  Request : {screen : Request},
+  RequestByType : {screen : RequestByType},
+  Scanner : {screen : Scanner},
+  SelectType : {screen : SelectType},
+  Revision : {screen : Revision},
+  ViewAll : {screen : ViewAll},
+  Types : {screen : Types},
+  AddType : {screen : AddType},
+  ViewInformation : {screen : ViewInformation},
+  EditVaccineHistory : {screen : EditVaccineHistory},
+  EditDiseaseHistory : {screen : EditDiseaseHistory},
+},
+{
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: false,
+  }
 });
+
+const App = createAppContainer(MainNavigator);
+
+export default App;
