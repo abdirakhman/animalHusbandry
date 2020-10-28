@@ -120,8 +120,8 @@ export default class EditVaccineHistory extends React.Component {
         "SELECT `vaccine_history` FROM 'animals' WHERE id=?",
         [id],
         (tx, res) => {
-          let lol = res.rows._array[0];
-          let { vaccine_history } = lol;
+          let arr = res.rows._array[0];
+          let { vaccine_history } = arr;
           vaccine_history =
             this.state.name +
             "      " +

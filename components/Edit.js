@@ -78,18 +78,18 @@ export default class Edit extends React.Component {
     await Font.loadAsync({
       Electrolize: require("../assets/fonts/Electrolize.otf"),
     });
-    let kek = this.props.navigation.state.params.id;
+    let given_id = this.props.navigation.state.params.id;
 
     db.transaction((tx) => {
       tx.executeSql(
         "SELECT * FROM `animals` WHERE id=?",
-        [kek],
+        [given_id],
         (tx, res) => {
           if (res.rows.length > 0) {
-            let lol = res.rows._array[0];
+            let arr = res.rows._array[0];
             this.setState((prevState) => ({
               ...prevState,
-              ...lol,
+              ...arr,
               found: true,
             }));
             this.setState({ _active: this.state.active });

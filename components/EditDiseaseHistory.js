@@ -155,8 +155,8 @@ export default class EditDiseaseHistory extends React.Component {
         "SELECT `disease_history` FROM 'animals' WHERE id=?",
         [id],
         (tx, res) => {
-          let lol = res.rows._array[0];
-          let { disease_history } = lol;
+          let arr = res.rows._array[0];
+          let { disease_history } = arr;
           disease_history =
             this.state.name +
             "      " +

@@ -85,12 +85,12 @@ export default class Request extends React.Component {
     this.componentDidMount = this.componentDidMount.bind(this);
   }
   async componentDidMount() {
-    let kek = this.props.navigation.state.params.id;
+    let given_id = this.props.navigation.state.params.id;
 
     db.transaction((tx) => {
       tx.executeSql(
         "SELECT * FROM `animals` WHERE id=?",
-        [kek],
+        [given_id],
         (tx, res) => {
           if (res.rows.length > 0)
             this.setState({ dataSource: res.rows._array[0], found: true });

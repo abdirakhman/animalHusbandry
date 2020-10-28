@@ -100,11 +100,11 @@ export default class RequestStaff extends React.Component {
       Electrolize: require("../assets/fonts/Electrolize.otf"),
     });
     const { navigation } = this.props;
-    let kek = navigation.state.params.id;
+    let given_id = navigation.state.params.id;
     db.transaction((tx) => {
       tx.executeSql(
         "SELECT * FROM `animals` WHERE type_id=?",
-        [kek],
+        [given_id],
         (tx, res) => {
           this.setState({ isLoading: false, data: res.rows._array });
           this.initialData = res.rows._array;
