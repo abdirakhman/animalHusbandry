@@ -1,4 +1,4 @@
-# Project Title
+# Animal Husbandry app
 
 Mobile application for Android and iOS to keep track of animal husbandry.
 
@@ -24,7 +24,7 @@ All list of prerequisites are in `package.json` file.
 
 ## Deployment
 
-To deploy app please refer to * [Expo](https://docs.expo.io/distribution/building-standalone-apps/).
+To deploy app please refer to [Expo](https://docs.expo.io/distribution/building-standalone-apps/).
 
 ## Built With
 
