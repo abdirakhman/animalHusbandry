@@ -98,7 +98,7 @@ export default class Edit extends React.Component {
               ...prevState,
               name: "Not Found",
               active: "Not Found",
-              _active : "Not Found",
+              _active: "Not Found",
               type_name: "Not Found",
               date: "Not Found",
               gender: "Not Found",

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   StyleSheet,
   Text,
@@ -7,54 +7,52 @@ import {
   TouchableOpacity,
   FlatList,
   ActivityIndicator,
-} from 'react-native';
-import * as Font from 'expo-font';
-import * as SQLite from 'expo-sqlite';
+} from "react-native";
+import * as Font from "expo-font";
+import * as SQLite from "expo-sqlite";
 
 const db = SQLite.openDatabase("Animals.db");
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   text: {
-    flex : 1,
-    color: '#74B43F',
-    fontFamily : 'Electrolize',
-    textAlign : 'center',
-    textAlignVertical : 'center',
+    flex: 1,
+    color: "#74B43F",
+    fontFamily: "Electrolize",
+    textAlign: "center",
+    textAlignVertical: "center",
   },
-  textInput : {
-    marginBottom : 10,
+  textInput: {
+    marginBottom: 10,
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
     borderBottomLeftRadius: 5,
-    backgroundColor : 'white',
-    borderWidth : 1,
-    fontFamily: 'Electrolize',
-    height : 45,
-    marginHorizontal : 30,
+    backgroundColor: "white",
+    borderWidth: 1,
+    fontFamily: "Electrolize",
+    height: 45,
+    marginHorizontal: 30,
     padding: 16,
   },
-  item : {
-    backgroundColor : '#EEFCE8',
-    borderWidth : 3,
-    height : 45,
-    marginHorizontal : 30,
-    alignSelf : 'stretch',
-    marginBottom : 10,
-    borderColor : '#74B43F',
+  item: {
+    backgroundColor: "#EEFCE8",
+    borderWidth: 3,
+    height: 45,
+    marginHorizontal: 30,
+    alignSelf: "stretch",
+    marginBottom: 10,
+    borderColor: "#74B43F",
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     borderBottomRightRadius: 5,
     borderBottomLeftRadius: 5,
   },
 });
-
 
 function Item({ title, go, navigation }) {
   return (
@@ -65,48 +63,50 @@ function Item({ title, go, navigation }) {
         navigation.goBack();
       }}
     >
-    <Text style={styles.text}>{title.toString()}</Text>
+      <Text style={styles.text}>{title.toString()}</Text>
     </TouchableOpacity>
   );
 }
-
 
 export default class SelectType extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
-      token: '',
-      data : [],
-     };
+      token: "",
+      data: [],
+    };
   }
   async componentDidMount() {
     await Font.loadAsync({
-      'Electrolize': require('../assets/fonts/Electrolize.otf'),
+      Electrolize: require("../assets/fonts/Electrolize.otf"),
     });
-    db.transaction(tx => {
-      tx.executeSql("SELECT * FROM 'types'", [], 
-      (tx, res) => {
-          this.setState({data : res.rows._array, isLoading : false});
+    db.transaction((tx) => {
+      tx.executeSql(
+        "SELECT * FROM 'types'",
+        [],
+        (tx, res) => {
+          this.setState({ data: res.rows._array, isLoading: false });
           this.initialData = res.rows._array;
-      },
-      (tx, err) => {
+        },
+        (tx, err) => {
           alert(err);
-      });
+        }
+      );
     });
   }
 
-  _searchFilterFunction = text => {
-    if (!text || text === '') {
-      this.setState({data : this.initialData});
+  _searchFilterFunction = (text) => {
+    if (!text || text === "") {
+      this.setState({ data: this.initialData });
       return;
     }
-    const newData = this.initialData.filter(item => {
+    const newData = this.initialData.filter((item) => {
       const itemData = `${item.name.toString().toUpperCase()}`;
 
-       const textData = text.toString().toUpperCase();
+      const textData = text.toString().toUpperCase();
 
-       return itemData.indexOf(textData) > -1;
+      return itemData.indexOf(textData) > -1;
     });
     this.setState({ data: newData });
   };
@@ -115,7 +115,7 @@ export default class SelectType extends React.Component {
     if (this.state.isLoading) {
       return (
         <View style={styles.container}>
-          <ActivityIndicator size="large" color="#74B43F"/>
+          <ActivityIndicator size="large" color="#74B43F" />
         </View>
       );
     }
@@ -124,7 +124,7 @@ export default class SelectType extends React.Component {
         <TextInput
           placeholder="Type"
           autoCapitalize="none"
-          onChangeText={text => this._searchFilterFunction(text)}
+          onChangeText={(text) => this._searchFilterFunction(text)}
           style={styles.textInput}
         />
         <FlatList

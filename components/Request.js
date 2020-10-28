@@ -19,13 +19,40 @@ function ViewInfo({ found, navigation, data }) {
   if (found === true) {
     return (
       <>
-        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ViewInformation', {data : data, info : "vaccine_history", pretty_info : "vaccine history"})}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() =>
+            navigation.navigate("ViewInformation", {
+              data: data,
+              info: "vaccine_history",
+              pretty_info: "vaccine history",
+            })
+          }
+        >
           <Text style={styles.textStyle}>{"View Vaccine History"}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ViewInformation', {data : data, info : "disease_history", pretty_info : "disease history"})}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() =>
+            navigation.navigate("ViewInformation", {
+              data: data,
+              info: "disease_history",
+              pretty_info: "disease history",
+            })
+          }
+        >
           <Text style={styles.textStyle}>{"View Disease History"}</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ViewInformation', {data : data, info : "ancestors", pretty_info : "ancestors"})}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() =>
+            navigation.navigate("ViewInformation", {
+              data: data,
+              info: "ancestors",
+              pretty_info: "ancestors",
+            })
+          }
+        >
           <Text style={styles.textStyle}>{"View Ancestors"}</Text>
         </TouchableOpacity>
       </>
@@ -59,7 +86,7 @@ export default class Request extends React.Component {
   }
   async componentDidMount() {
     let kek = this.props.navigation.state.params.id;
-    
+
     db.transaction((tx) => {
       tx.executeSql(
         "SELECT * FROM `animals` WHERE id=?",
@@ -75,7 +102,7 @@ export default class Request extends React.Component {
                 active: "Not Found",
                 type_name: "Not Found",
                 date: "Not Found",
-                gender : "Not Found",
+                gender: "Not Found",
               },
             }));
             this.setState({ found: false });
@@ -134,7 +161,11 @@ export default class Request extends React.Component {
             </Text>
           </View>
         </View>
-        <ViewInfo data={this.state.dataSource} navigation={this.props.navigation} found={this.state.found} />
+        <ViewInfo
+          data={this.state.dataSource}
+          navigation={this.props.navigation}
+          found={this.state.found}
+        />
       </View>
     );
   }

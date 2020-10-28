@@ -36,7 +36,9 @@ export default class ViewInformation extends React.Component {
         <SafeAreaView style={styles.box}>
           <ScrollView style={styles.whiteBox}>
             <Text style={styles.textStyle}>
-              {this.props.navigation.state.params.data[info.toString()].toString()}
+              {this.props.navigation.state.params.data[
+                info.toString()
+              ].toString()}
             </Text>
           </ScrollView>
         </SafeAreaView>

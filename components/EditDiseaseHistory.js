@@ -20,7 +20,7 @@ export default class EditDiseaseHistory extends React.Component {
     super(props);
     this.state = {
       date_begin: "",
-      date_end : "",
+      date_end: "",
       name: "",
       assetsLoaded: false,
     };
@@ -144,41 +144,40 @@ export default class EditDiseaseHistory extends React.Component {
     );
   }
   _handleEdit = async () => {
-    if (
-      this.state.date == "" ||
-      this.state.name == ""
-    ) {
+    if (this.state.date == "" || this.state.name == "") {
       alert("Write all fields");
       return;
     }
-    let {id} = this.props.navigation.state.params;
+    let { id } = this.props.navigation.state.params;
 
     db.transaction((tx) => {
       tx.executeSql(
         "SELECT `disease_history` FROM 'animals' WHERE id=?",
-        [
-            id
-        ],
+        [id],
         (tx, res) => {
-            let lol = res.rows._array[0];
-            let {disease_history} = lol; 
-            disease_history = this.state.name + "      " + this.state.date_begin + " " + this.state.date_end + "\r\n" + disease_history;
-            tx.executeSql(
-              "UPDATE `animals` SET `disease_history`=? WHERE id=?",
-              [
-                disease_history,
-                id,
-              ],
-              (tx, res) => {
-                alert("Success!");
-                this.setState({date_begin : "", date_end : "", name : ""});
-              },
-              (tx, err) => {
-                alert(err);
-                alert("Something went wrong");
-              }
-            );
-          },
+          let lol = res.rows._array[0];
+          let { disease_history } = lol;
+          disease_history =
+            this.state.name +
+            "      " +
+            this.state.date_begin +
+            " " +
+            this.state.date_end +
+            "\r\n" +
+            disease_history;
+          tx.executeSql(
+            "UPDATE `animals` SET `disease_history`=? WHERE id=?",
+            [disease_history, id],
+            (tx, res) => {
+              alert("Success!");
+              this.setState({ date_begin: "", date_end: "", name: "" });
+            },
+            (tx, err) => {
+              alert(err);
+              alert("Something went wrong");
+            }
+          );
+        },
         (tx, err) => {
           alert(err);
           alert("Something went wrong");

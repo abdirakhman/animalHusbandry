@@ -22,7 +22,7 @@ export default class EditVaccineHistory extends React.Component {
     this.state = {
       date: "",
       name: "",
-      vaccine_history : "",
+      vaccine_history: "",
       assetsLoaded: false,
     };
   }
@@ -109,41 +109,38 @@ export default class EditVaccineHistory extends React.Component {
     );
   }
   _handleEdit = async () => {
-    if (
-      this.state.date == "" ||
-      this.state.name == ""
-    ) {
+    if (this.state.date == "" || this.state.name == "") {
       alert("Write all fields");
       return;
     }
-    let {id} = this.props.navigation.state.params;
+    let { id } = this.props.navigation.state.params;
 
     db.transaction((tx) => {
       tx.executeSql(
         "SELECT `vaccine_history` FROM 'animals' WHERE id=?",
-        [
-            id
-        ],
+        [id],
         (tx, res) => {
-            let lol = res.rows._array[0];
-            let {vaccine_history} = lol; 
-            vaccine_history = this.state.name + "      " + this.state.date + "\r\n" + vaccine_history;
-            tx.executeSql(
-              "UPDATE `animals` SET `vaccine_history`=? WHERE id=?",
-              [
-                vaccine_history,
-                id,
-              ],
-              (tx, res) => {
-                alert("Success!");
-                this.setState({date : "", name : ""});
-              },
-              (tx, err) => {
-                alert(err);
-                alert("Something went wrong");
-              }
-            );
-          },
+          let lol = res.rows._array[0];
+          let { vaccine_history } = lol;
+          vaccine_history =
+            this.state.name +
+            "      " +
+            this.state.date +
+            "\r\n" +
+            vaccine_history;
+          tx.executeSql(
+            "UPDATE `animals` SET `vaccine_history`=? WHERE id=?",
+            [vaccine_history, id],
+            (tx, res) => {
+              alert("Success!");
+              this.setState({ date: "", name: "" });
+            },
+            (tx, err) => {
+              alert(err);
+              alert("Something went wrong");
+            }
+          );
+        },
         (tx, err) => {
           alert(err);
           alert("Something went wrong");
